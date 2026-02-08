@@ -1,0 +1,364 @@
+/* Home page */
+.page-home {
+  background: var(--home-gradient);
+  min-height: 100vh;
+}
+
+.home-app {
+  max-width: min(680px, 92vw);
+  margin: 0 auto;
+  padding: clamp(1.25rem, 4vw, 2.5rem) clamp(1rem, 4vw, 1.5rem) clamp(2.5rem, 8vw, 4rem);
+}
+
+.home-header {
+  margin-bottom: 3rem;
+}
+
+.nav-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nav-main .logo {
+  font-family: "Outfit", var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.nav-main .logo:hover {
+  color: var(--text);
+}
+
+.home-main {
+  padding: 0;
+}
+
+.hero-section {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.hero-greeting {
+  font-family: "Outfit", var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin: 0 0 0.5rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero-name {
+  font-family: "Be Vietnam Pro", var(--font-display);
+  font-size: clamp(2.25rem, 6.5vw, 3.5rem);
+  font-weight: 800;
+  margin: 0 0 0.75rem;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.hero-name-inner {
+  display: inline-block;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #334155 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding-bottom: 0.15em;
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(90deg, var(--accent), var(--gold)) 1;
+}
+
+[data-theme="dark"] .hero-name-inner {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  border-image: linear-gradient(90deg, #60a5fa, #fbbf24) 1;
+}
+
+.hero-tagline {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin: 0;
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+.quote-section {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2.5rem;
+  box-shadow: var(--shadow-panel);
+}
+
+[data-theme="dark"] .quote-section {
+  border-left-color: #60a5fa;
+}
+
+.quote-label-top {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 0.75rem;
+}
+
+.quote-block {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.quote-section .quote-text {
+  font-size: 1rem;
+  color: var(--text);
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.quote-section .quote-author {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin: 0.75rem 0 0;
+  font-style: normal;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.roadmap-section {
+  margin-top: 0.5rem;
+}
+
+.section-heading {
+  font-family: "Outfit", var(--font-display);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0 0 1.25rem;
+  text-align: center;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(0.75rem, 3vw, 1rem);
+}
+
+.option-card {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(0.75rem, 3vw, 1rem);
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: clamp(1rem, 3vw, 1.25rem);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  box-shadow: var(--shadow);
+}
+
+.option-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] .option-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.option-cfa:hover {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+.option-java:hover {
+  border-color: var(--java-orange);
+  background: var(--java-orange-bg);
+}
+
+.option-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(2.5rem, 12vw, 3rem);
+  height: clamp(2.5rem, 12vw, 3rem);
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  border-radius: clamp(0.5rem, 2.5vw, 0.75rem);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.option-icon img {
+  width: 58%;
+  height: 58%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.option-icon-cfa {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  color: var(--accent);
+}
+
+.option-card.option-cfa:hover .option-icon-cfa {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.option-icon-java {
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  color: var(--java-orange);
+}
+
+.option-card.option-java:hover .option-icon-java {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(237, 125, 49, 0.2);
+}
+
+[data-theme="dark"] .option-icon-cfa {
+  background: linear-gradient(135deg, #1e3a5f 0%, #1e40af 50%);
+  color: #93c5fd;
+}
+
+[data-theme="dark"] .option-icon-java {
+  background: linear-gradient(135deg, #431407 0%, #9a3412 50%);
+  color: #fdba74;
+}
+
+.option-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.option-heading {
+  font-family: "Be Vietnam Pro", var(--font-display);
+  font-size: clamp(0.9375rem, 2.2vw, 1.0625rem);
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+  color: var(--text);
+}
+
+.option-desc {
+  font-size: clamp(0.75rem, 1.8vw, 0.8125rem);
+  color: var(--text-muted);
+  margin: 0 0 0.75rem;
+  line-height: 1.5;
+}
+
+.option-cta {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.option-arrow {
+  opacity: 0.8;
+}
+
+.option-java .option-cta {
+  color: var(--java-orange);
+}
+
+.home-footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.home-footer p {
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .home-header {
+    margin-bottom: 2rem;
+  }
+
+  .hero-name {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+  }
+
+  .quote-section {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .option-card {
+    padding: 1rem 1rem;
+  }
+
+  .option-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .home-app {
+    padding: 1rem 0.875rem 2.5rem;
+  }
+
+  .hero-greeting {
+    font-size: 0.75rem;
+  }
+
+  .hero-name {
+    font-size: clamp(1.5rem, 10vw, 2rem);
+  }
+
+  .hero-tagline {
+    font-size: 0.9375rem;
+  }
+
+  .option-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+  }
+
+  .option-heading {
+    font-size: 0.9375rem;
+  }
+
+  .option-desc {
+    font-size: 0.75rem;
+  }
+}

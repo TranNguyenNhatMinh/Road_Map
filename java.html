@@ -3,21 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Java learning roadmap — from basics to Spring, Jakarta EE and Web Services. Track your progress.">
   <title>Java Roadmap — Roadmap</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <script>
     (function(){var t=localStorage.getItem("roadmap-theme");if(t!=="dark"&&t!=="light")t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t);})();
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body class="page-java">
   <div class="app">
     <header class="header java-header">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <span>Java</span>
+      </nav>
       <div class="header-inner header-row">
         <div>
-          <a href="index.html" class="back-link">← Back to home</a>
           <h1 class="logo">Java Roadmap</h1>
           <p class="tagline">From Java basics to Java Web, Spring, Jakarta EE and Web Services.</p>
         </div>
@@ -39,12 +45,12 @@
     </main>
 
     <footer class="footer">
-      <p>Java Roadmap — Track your progress. One step at a time!</p>
+      <p>Personal learning roadmap · One step at a time.</p>
     </footer>
     <div class="toast" id="javaToast" role="status" aria-live="polite"></div>
   </div>
-  <script src="theme.js"></script>
-  <script src="java-data.js"></script>
-  <script src="java.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/java-data.js"></script>
+  <script src="js/java-app.js"></script>
 </body>
 </html>

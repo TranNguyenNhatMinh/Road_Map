@@ -109,10 +109,12 @@
     const bar = document.getElementById("globalProgressBar");
     const statCompleted = document.getElementById("statCompleted");
     const statTotal = document.getElementById("statTotal");
+    const statPct = document.getElementById("statPct");
 
     if (bar) bar.style.width = pct + "%";
     if (statCompleted) statCompleted.textContent = done;
     if (statTotal) statTotal.textContent = total;
+    if (statPct) statPct.textContent = "(" + pct + "%)";
 
     var progressMsg = document.getElementById("motivationProgress");
     if (progressMsg) progressMsg.textContent = getProgressMessage(pct);

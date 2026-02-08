@@ -51,6 +51,8 @@
     if (bar) bar.style.width = pct + "%";
     if (statDone) statDone.textContent = done;
     if (statTotal) statTotal.textContent = total;
+    var statPct = document.getElementById("javaStatPct");
+    if (statPct) statPct.textContent = "(" + pct + "%)";
   }
 
   function updateModuleUI(moduleId) {
@@ -90,7 +92,7 @@
 
     var progressHtml = "<section class=\"progress-panel panel\">";
     progressHtml += "<div class=\"progress-header\"><h2 class=\"panel-title\">Overall progress</h2>";
-    progressHtml += "<div class=\"progress-stats\"><span class=\"stat\" id=\"javaStatDone\">" + done + "</span><span class=\"stat-label\">/</span><span class=\"stat\" id=\"javaStatTotal\">" + total + "</span><span class=\"stat-label\">items</span></div></div>";
+    progressHtml += "<div class=\"progress-stats\"><span class=\"stat\" id=\"javaStatDone\">" + done + "</span><span class=\"stat-label\">/</span><span class=\"stat\" id=\"javaStatTotal\">" + total + "</span><span class=\"stat-label\">items</span><span class=\"stat-pct\" id=\"javaStatPct\">(" + pct + "%)</span></div></div>";
     progressHtml += "<div class=\"progress-bar-wrap\"><div class=\"progress-bar\" id=\"javaProgressBar\" style=\"width:" + pct + "%\"></div></div></section>";
 
     var html = progressHtml;
