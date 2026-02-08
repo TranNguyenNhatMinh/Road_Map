@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Java Roadmap — Roadmap</title>
+  <script>
+    (function(){var t=localStorage.getItem("roadmap-theme");if(t!=="dark"&&t!=="light")t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t);})();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-java">
+  <div class="app">
+    <header class="header java-header">
+      <div class="header-inner header-row">
+        <div>
+          <a href="index.html" class="back-link">← Back to home</a>
+          <h1 class="logo">Java Roadmap</h1>
+          <p class="tagline">From Java basics to Java Web, Spring, Jakarta EE and Web Services.</p>
+        </div>
+        <div class="theme-toggle-wrap">
+          <button type="button" id="themeToggle" class="theme-toggle" aria-label="Switch to dark mode">
+            <span class="theme-toggle-icon" aria-hidden="true">☽</span>
+            <span class="theme-toggle-label">Light</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="java-intro panel">
+      <p class="java-intro-text">The Java learning path is split into: <strong>Java I</strong> (foundations), <strong>Java II</strong> (advanced), <strong>Java Web (Servlets & JSP)</strong>, <strong>Spring Framework</strong>, <strong>Jakarta EE</strong> and <strong>Web Services</strong>. Check off each item as you complete it.</p>
+    </section>
+
+    <main class="curriculum java-curriculum" id="javaCurriculum">
+      <!-- Injected by java.js from java-data.js -->
+    </main>
+
+    <footer class="footer">
+      <p>Java Roadmap — Track your progress. One step at a time!</p>
+    </footer>
+    <div class="toast" id="javaToast" role="status" aria-live="polite"></div>
+  </div>
+  <script src="theme.js"></script>
+  <script src="java-data.js"></script>
+  <script src="java.js"></script>
+</body>
+</html>

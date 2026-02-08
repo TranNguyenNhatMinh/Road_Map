@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CFA Study Tracker — Roadmap</title>
+  <script>
+    (function(){var t=localStorage.getItem("roadmap-theme");if(t!=="dark"&&t!=="light")t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t);})();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-cfa">
+  <div class="app">
+    <header class="header">
+      <div class="header-inner header-row">
+        <div>
+          <a href="index.html" class="back-link">← Back to home</a>
+          <h1 class="logo">CFA Level I Study Tracker</h1>
+          <p class="tagline">Your exam roadmap on your schedule — every small step gets you to the goal.</p>
+        </div>
+        <div class="theme-toggle-wrap">
+          <button type="button" id="themeToggle" class="theme-toggle" aria-label="Switch to dark mode">
+            <span class="theme-toggle-icon" aria-hidden="true">☽</span>
+            <span class="theme-toggle-label">Light</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="motivation-quote" id="motivationQuote">
+      <p class="quote-text" id="motivationText">An investment in knowledge pays the best interest.</p>
+      <p class="quote-author" id="motivationAuthor">— Benjamin Franklin</p>
+      <p class="quote-label">💪 Motivation</p>
+    </div>
+
+    <section class="progress-panel panel">
+      <div class="progress-header">
+        <h2 class="panel-title">Overall progress</h2>
+        <div class="progress-stats">
+          <span class="stat" id="statCompleted">0</span>
+          <span class="stat-label">/</span>
+          <span class="stat" id="statTotal">0</span>
+          <span class="stat-label">modules</span>
+        </div>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar" id="globalProgressBar" style="width: 0%"></div>
+      </div>
+      <p class="motivation-progress" id="motivationProgress"></p>
+    </section>
+
+    <main class="curriculum" id="curriculum">
+      <!-- Topics injected by JS from data -->
+    </main>
+
+    <footer class="footer">
+      <p>CFA® curriculum — Track your study progress. Keep going, you've got this!</p>
+    </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+  <script src="theme.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
