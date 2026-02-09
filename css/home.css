@@ -166,7 +166,7 @@
 
 .option-card {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   gap: clamp(0.75rem, 3vw, 1rem);
   background: var(--bg-panel);
   border: 1px solid var(--border);
@@ -197,8 +197,19 @@
   background: var(--java-orange-bg);
 }
 
+.option-aptech:hover {
+  border-color: var(--aptech-violet);
+  background: var(--aptech-violet-bg);
+}
+
+.option-frontend:hover {
+  border-color: var(--frontend-teal);
+  background: var(--frontend-teal-bg);
+}
+
 .option-icon {
   flex-shrink: 0;
+  align-self: flex-start;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -239,6 +250,26 @@
   box-shadow: 0 4px 12px rgba(237, 125, 49, 0.2);
 }
 
+.option-icon-aptech {
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+  color: var(--aptech-violet);
+}
+
+.option-card.option-aptech:hover .option-icon-aptech {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.option-icon-frontend {
+  background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%);
+  color: var(--frontend-teal);
+}
+
+.option-card.option-frontend:hover .option-icon-frontend {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
+}
+
 [data-theme="dark"] .option-icon-cfa {
   background: linear-gradient(135deg, #1e3a5f 0%, #1e40af 50%);
   color: #93c5fd;
@@ -249,9 +280,22 @@
   color: #fdba74;
 }
 
+[data-theme="dark"] .option-icon-aptech {
+  background: linear-gradient(135deg, #312e81 0%, #4338ca 50%);
+  color: #a5b4fc;
+}
+
+[data-theme="dark"] .option-icon-frontend {
+  background: linear-gradient(135deg, #134e4a 0%, #0d9488 50%);
+  color: #5eead4;
+}
+
 .option-content {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .option-heading {
@@ -267,6 +311,8 @@
   color: var(--text-muted);
   margin: 0 0 0.75rem;
   line-height: 1.5;
+  flex: 1;
+  min-height: 0;
 }
 
 .option-cta {
@@ -276,6 +322,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
+  margin-top: auto;
 }
 
 .option-arrow {
@@ -284,6 +331,14 @@
 
 .option-java .option-cta {
   color: var(--java-orange);
+}
+
+.option-aptech .option-cta {
+  color: var(--aptech-violet);
+}
+
+.option-frontend .option-cta {
+  color: var(--frontend-teal);
 }
 
 .home-footer {

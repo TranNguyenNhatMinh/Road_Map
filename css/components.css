@@ -6,6 +6,15 @@
   border-bottom: 1px solid var(--border);
 }
 
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
 .header-inner {
   position: relative;
 }
@@ -21,7 +30,11 @@
 .breadcrumb {
   font-size: 0.8125rem;
   color: var(--text-muted);
-  margin-bottom: 0.75rem;
+  margin: 0;
+}
+
+.header-top .breadcrumb {
+  margin-bottom: 0;
 }
 
 .breadcrumb a {
@@ -54,8 +67,37 @@
   font-size: 0.95rem;
 }
 
+.page-cfa .logo {
+  color: var(--cfa-blue);
+}
+
 .page-java .logo {
-  color: var(--java-dark);
+  color: var(--java-orange);
+}
+
+.page-aptech .logo {
+  color: var(--aptech-violet);
+}
+
+.page-frontend .logo {
+  color: var(--frontend-teal);
+}
+
+/* Breadcrumb hover theo chủ đề */
+.page-cfa .breadcrumb a:hover {
+  color: var(--cfa-blue);
+}
+
+.page-java .breadcrumb a:hover {
+  color: var(--java-orange);
+}
+
+.page-aptech .breadcrumb a:hover {
+  color: var(--aptech-violet);
+}
+
+.page-frontend .breadcrumb a:hover {
+  color: var(--frontend-teal);
 }
 
 .motivation-quote {
@@ -66,6 +108,16 @@
   margin-bottom: 1.5rem;
   text-align: center;
   box-shadow: var(--shadow);
+}
+
+.page-cfa .motivation-quote {
+  background: linear-gradient(135deg, var(--cfa-blue-bg) 0%, #e0f2fe 100%);
+  border-left: 4px solid var(--cfa-blue);
+}
+
+[data-theme="dark"] .page-cfa .motivation-quote {
+  background: linear-gradient(135deg, var(--cfa-blue-bg) 0%, #0c4a6e 100%);
+  border-left-color: var(--cfa-blue);
 }
 
 .motivation-quote .quote-text {
@@ -243,6 +295,25 @@
   color: var(--success);
 }
 
+.page-cfa .progress-stats .stat:first-of-type {
+  color: var(--cfa-blue);
+}
+
+.page-java .progress-stats .stat:first-of-type,
+#javaCurriculum .progress-stats .stat:first-of-type {
+  color: var(--java-orange);
+}
+
+.page-aptech .progress-stats .stat:first-of-type,
+#aptechCurriculum .progress-stats .stat:first-of-type {
+  color: var(--aptech-violet);
+}
+
+.page-frontend .progress-stats .stat:first-of-type,
+#frontendCurriculum .progress-stats .stat:first-of-type {
+  color: var(--frontend-teal);
+}
+
 .progress-stats .stat-label {
   margin: 0;
 }
@@ -267,6 +338,24 @@
   transition: width 0.4s ease;
 }
 
+.page-cfa .progress-bar {
+  background: linear-gradient(90deg, var(--cfa-blue), var(--success));
+}
+
+.page-java .progress-bar {
+  background: linear-gradient(90deg, var(--java-orange), var(--success));
+}
+
+.page-aptech .progress-bar,
+#aptechCurriculum .progress-bar {
+  background: linear-gradient(90deg, var(--aptech-violet), var(--success));
+}
+
+.page-frontend .progress-bar,
+#frontendCurriculum .progress-bar {
+  background: linear-gradient(90deg, var(--frontend-teal), var(--success));
+}
+
 .java-intro {
   margin-bottom: 1.5rem;
 }
@@ -282,22 +371,44 @@
   margin-top: 0.5rem;
 }
 
-.java-curriculum .topic-title {
-  color: var(--java-dark);
-}
-
 .topic {
-  margin-bottom: 2rem;
+  margin-bottom: 2.25rem;
 }
 
 .topic-title {
   font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 700;
   color: var(--text);
-  margin: 0 0 0.85rem;
-  padding-bottom: 0.5rem;
+  margin: 0 0 1rem;
+  padding: 0.5rem 0 0.6rem 0.75rem;
+  border-left: 4px solid var(--accent);
   border-bottom: 1px solid var(--border);
+  background: var(--bg-panel);
+  border-radius: 0 var(--radius-sm) 0 0;
+}
+
+.page-cfa .topic-title {
+  border-left-color: var(--cfa-blue);
+  color: var(--cfa-dark);
+}
+
+.java-curriculum .topic-title,
+.page-java .topic-title {
+  border-left-color: var(--java-orange);
+  color: var(--java-dark);
+}
+
+.page-aptech .topic-title,
+#aptechCurriculum .topic-title {
+  border-left-color: var(--aptech-violet);
+  color: var(--aptech-dark);
+}
+
+.page-frontend .topic-title,
+#frontendCurriculum .topic-title {
+  border-left-color: var(--frontend-teal);
+  color: var(--frontend-dark);
 }
 
 .module-list {
@@ -306,27 +417,85 @@
   padding: 0;
 }
 
+/* Task cần học = nền trắng / chữ rõ */
 .module-row {
   display: flex;
   align-items: flex-start;
-  gap: 0.85rem;
-  padding: 0.75rem 0.9rem;
-  margin-bottom: 4px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  gap: 0.9rem;
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.5rem;
+  background: var(--task-bg);
+  border: 1px solid var(--task-border);
   border-radius: var(--radius-sm);
-  transition: border-color 0.2s, background 0.2s;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
   cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 .module-row:hover {
   border-color: var(--accent);
   background: var(--accent-light);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
 }
 
+[data-theme="dark"] .module-row:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.page-cfa .module-row:hover {
+  border-color: var(--cfa-blue);
+  background: var(--cfa-blue-bg);
+}
+
+.page-cfa .module-row:not(.completed):hover .module-complete-btn {
+  border-color: var(--cfa-blue);
+  background: var(--cfa-blue-bg);
+}
+
+.page-java .module-row:hover {
+  border-color: var(--java-orange);
+  background: var(--java-orange-bg);
+}
+
+.page-java .module-row:not(.completed):hover .module-complete-btn {
+  border-color: var(--java-orange);
+  background: var(--java-orange-bg);
+}
+
+.page-aptech .module-row:hover,
+#aptechCurriculum .module-row:hover {
+  border-color: var(--aptech-violet);
+  background: var(--aptech-violet-bg);
+}
+
+.page-aptech .module-row:not(.completed):hover .module-complete-btn,
+#aptechCurriculum .module-row:not(.completed):hover .module-complete-btn {
+  border-color: var(--aptech-violet);
+  background: var(--aptech-violet-bg);
+}
+
+.page-frontend .module-row:hover,
+#frontendCurriculum .module-row:hover {
+  border-color: var(--frontend-teal);
+  background: var(--frontend-teal-bg);
+}
+
+.page-frontend .module-row:not(.completed):hover .module-complete-btn,
+#frontendCurriculum .module-row:not(.completed):hover .module-complete-btn {
+  border-color: var(--frontend-teal);
+  background: var(--frontend-teal-bg);
+}
+
+/* Đã xong = màu xanh nhạt, chữ gạch */
 .module-row.completed {
   border-color: var(--success-border);
   background: var(--success-bg);
+  box-shadow: none;
+}
+
+.module-row.completed .module-title {
+  color: var(--text-muted);
+  text-decoration: line-through;
 }
 
 .module-complete-btn {
@@ -335,15 +504,15 @@
   height: 22px;
   min-width: 22px;
   min-height: 22px;
-  border: 2px solid var(--border-strong);
+  border: 2px solid var(--task-border);
   border-radius: 50%;
-  background: var(--bg-panel);
+  background: var(--task-bg);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
-  margin-top: 3px;
+  margin-top: 2px;
 }
 
 .module-row:not(.completed):hover .module-complete-btn {
@@ -386,7 +555,9 @@
 .module-title {
   display: block;
   font-weight: 500;
-  color: var(--text);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--task-text);
 }
 
 .module-row.completed .module-title {
