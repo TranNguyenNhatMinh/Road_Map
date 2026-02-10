@@ -1,17 +1,17 @@
-/* Home page */
+/* Home page — professional layout */
 .page-home {
   background: var(--home-gradient);
   min-height: 100vh;
 }
 
 .home-app {
-  max-width: min(680px, 92vw);
+  max-width: min(720px, 94vw);
   margin: 0 auto;
-  padding: clamp(1.25rem, 4vw, 2.5rem) clamp(1rem, 4vw, 1.5rem) clamp(2.5rem, 8vw, 4rem);
+  padding: clamp(1.5rem, 5vw, 3rem) clamp(1.25rem, 4vw, 2rem) clamp(3rem, 10vw, 5rem);
 }
 
 .home-header {
-  margin-bottom: 3rem;
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
 }
 
 .nav-main {
@@ -23,17 +23,43 @@
 }
 
 .nav-main .logo {
-  font-family: "Outfit", var(--font-display);
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--text);
   text-decoration: none;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: -0.02em;
 }
 
 .nav-main .logo:hover {
+  color: var(--accent);
+}
+
+.auth-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.auth-nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: color 0.2s, background 0.2s;
+}
+
+.auth-nav a:hover {
+  color: var(--accent);
+  background: var(--accent-light);
+}
+
+.auth-email {
   color: var(--text);
+  font-weight: 500;
+  margin-right: 0.25rem;
 }
 
 .home-main {
@@ -42,37 +68,36 @@
 
 .hero-section {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
 }
 
 .hero-greeting {
-  font-family: "Outfit", var(--font-sans);
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 600;
   color: var(--text-muted);
   margin: 0 0 0.5rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .hero-name {
-  font-family: "Be Vietnam Pro", var(--font-display);
-  font-size: clamp(2.25rem, 6.5vw, 3.5rem);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3.25rem);
   font-weight: 800;
   margin: 0 0 0.75rem;
-  letter-spacing: -0.04em;
-  line-height: 1.1;
-  white-space: nowrap;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 
 .hero-name-inner {
   display: inline-block;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #334155 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  padding-bottom: 0.15em;
-  border-bottom: 2px solid transparent;
+  padding-bottom: 0.2em;
+  border-bottom: 3px solid transparent;
   border-image: linear-gradient(90deg, var(--accent), var(--gold)) 1;
 }
 
@@ -88,10 +113,10 @@
   font-size: 1rem;
   color: var(--text-muted);
   margin: 0;
-  max-width: 380px;
+  max-width: 420px;
   margin-left: auto;
   margin-right: auto;
-  line-height: 1.55;
+  line-height: 1.6;
   font-weight: 400;
 }
 
@@ -101,12 +126,12 @@
   border-left: 4px solid var(--accent);
   border-radius: 0 var(--radius) var(--radius) 0;
   padding: 1.5rem 1.75rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: clamp(2rem, 5vw, 2.75rem);
   box-shadow: var(--shadow-panel);
 }
 
 [data-theme="dark"] .quote-section {
-  border-left-color: #60a5fa;
+  border-left-color: var(--accent);
 }
 
 .quote-label-top {
@@ -148,43 +173,44 @@
 }
 
 .section-heading {
-  font-family: "Outfit", var(--font-display);
-  font-size: 0.6875rem;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin: 0 0 1.25rem;
+  letter-spacing: 0.1em;
+  margin: 0 0 1.5rem;
   text-align: center;
 }
 
 .options-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: clamp(0.75rem, 3vw, 1rem);
+  gap: clamp(1rem, 3vw, 1.25rem);
 }
 
 .option-card {
   display: flex;
   align-items: stretch;
-  gap: clamp(0.75rem, 3vw, 1rem);
+  gap: clamp(0.875rem, 3vw, 1.125rem);
   background: var(--bg-panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: clamp(1rem, 3vw, 1.25rem);
+  padding: clamp(1.125rem, 3vw, 1.375rem);
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-  box-shadow: var(--shadow);
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s, transform 0.2s;
+  box-shadow: var(--shadow-card);
 }
 
 .option-card:hover {
   border-color: var(--border-strong);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
 }
 
 [data-theme="dark"] .option-card:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
 .option-cfa:hover {
@@ -205,6 +231,11 @@
 .option-frontend:hover {
   border-color: var(--frontend-teal);
   background: var(--frontend-teal-bg);
+}
+
+.option-english:hover {
+  border-color: var(--english-blue);
+  background: var(--english-blue-bg);
 }
 
 .option-icon {
@@ -270,6 +301,16 @@
   box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
 }
 
+.option-icon-english {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  color: var(--english-blue);
+}
+
+.option-card.option-english:hover .option-icon-english {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
 [data-theme="dark"] .option-icon-cfa {
   background: linear-gradient(135deg, #1e3a5f 0%, #1e40af 50%);
   color: #93c5fd;
@@ -290,6 +331,11 @@
   color: #5eead4;
 }
 
+[data-theme="dark"] .option-icon-english {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%);
+  color: #93c5fd;
+}
+
 .option-content {
   flex: 1;
   min-width: 0;
@@ -299,15 +345,15 @@
 }
 
 .option-heading {
-  font-family: "Be Vietnam Pro", var(--font-display);
+  font-family: var(--font-display);
   font-size: clamp(0.9375rem, 2.2vw, 1.0625rem);
   font-weight: 700;
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.4rem;
   color: var(--text);
 }
 
 .option-desc {
-  font-size: clamp(0.75rem, 1.8vw, 0.8125rem);
+  font-size: clamp(0.8125rem, 1.9vw, 0.875rem);
   color: var(--text-muted);
   margin: 0 0 0.75rem;
   line-height: 1.5;
@@ -341,8 +387,12 @@
   color: var(--frontend-teal);
 }
 
+.option-english .option-cta {
+  color: var(--english-blue);
+}
+
 .home-footer {
-  margin-top: 3rem;
+  margin-top: clamp(2.5rem, 6vw, 4rem);
   padding-top: 1.5rem;
   border-top: 1px solid var(--border);
   text-align: center;
@@ -352,6 +402,14 @@
 
 .home-footer p {
   margin: 0;
+}
+
+.home-sync-hint {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  opacity: 0.9;
 }
 
 @media (max-width: 640px) {

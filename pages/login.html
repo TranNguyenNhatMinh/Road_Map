@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — Roadmap</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <script>
+    (function(){var t=localStorage.getItem("roadmap-theme");if(t!=="dark"&&t!=="light")t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t);})();
+  </script>
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .auth-page { max-width: 400px; margin: 2rem auto; padding: 0 1rem; }
+    .auth-page h1 { font-size: 1.5rem; margin-bottom: 1.5rem; }
+    .auth-tabs { display: flex; gap: 0; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color, #e0e0e0); }
+    .auth-tabs .tab { padding: 0.75rem 1rem; cursor: pointer; border: none; background: none; font: inherit; color: inherit; }
+    .auth-tabs .tab.active { font-weight: 600; border-bottom: 2px solid var(--accent, #2563eb); margin-bottom: -1px; }
+    .auth-form { display: none; }
+    .auth-form.active { display: block; }
+    .auth-form label { display: block; margin-bottom: 0.25rem; font-weight: 500; }
+    .auth-form input { width: 100%; padding: 0.5rem 0.75rem; margin-bottom: 1rem; border: 1px solid var(--border-color); border-radius: 6px; box-sizing: border-box; }
+    .auth-form button[type="submit"] { width: 100%; padding: 0.75rem; background: var(--accent, #2563eb); color: #fff; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
+    .auth-form button[type="submit"]:disabled { opacity: 0.6; cursor: not-allowed; }
+    .auth-msg { margin-top: 1rem; padding: 0.75rem; border-radius: 6px; display: none; }
+    .auth-msg.error { background: #fef2f2; color: #b91c1c; display: block; }
+    .auth-msg.success { background: #f0fdf4; color: #15803d; display: block; }
+    .auth-page a.back { display: inline-block; margin-bottom: 1rem; color: var(--text-muted, #666); text-decoration: none; }
+    .auth-page a.back:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="auth-page">
+    <a href="../index.html" class="back">← Back to Roadmap</a>
+    <h1>Account</h1>
+    <div class="auth-tabs">
+      <button type="button" class="tab active" data-tab="login">Login</button>
+      <button type="button" class="tab" data-tab="register">Register</button>
+    </div>
+
+    <form id="loginForm" class="auth-form active">
+      <label for="loginEmail">Email</label>
+      <input type="email" id="loginEmail" required placeholder="you@example.com">
+      <label for="loginPassword">Password</label>
+      <input type="password" id="loginPassword" required>
+      <button type="submit">Login</button>
+      <p id="loginMsg" class="auth-msg" role="alert"></p>
+    </form>
+
+    <form id="registerForm" class="auth-form">
+      <label for="regEmail">Email</label>
+      <input type="email" id="regEmail" required placeholder="you@example.com">
+      <label for="regDisplayName">Display name (optional)</label>
+      <input type="text" id="regDisplayName" placeholder="Your name">
+      <label for="regPassword">Password</label>
+      <input type="password" id="regPassword" required minlength="6" placeholder="At least 6 characters">
+      <button type="submit">Register</button>
+      <p id="registerMsg" class="auth-msg" role="alert"></p>
+    </form>
+  </div>
+
+  <script src="../js/auth.js"></script>
+  <script>
+    (function () {
+      var tabs = document.querySelectorAll('.auth-tabs .tab');
+      var loginForm = document.getElementById('loginForm');
+      var registerForm = document.getElementById('registerForm');
+      tabs.forEach(function (t) {
+        t.addEventListener('click', function () {
+          var tab = this.getAttribute('data-tab');
+          tabs.forEach(function (x) { x.classList.remove('active'); });
+          this.classList.add('active');
+          loginForm.classList.toggle('active', tab === 'login');
+          registerForm.classList.toggle('active', tab === 'register');
+          document.getElementById('loginMsg').className = 'auth-msg';
+          document.getElementById('registerMsg').className = 'auth-msg';
+        });
+      });
+
+      function showMsg(formId, msg, isError) {
+        var el = document.getElementById(formId + 'Msg');
+        el.textContent = msg;
+        el.className = 'auth-msg ' + (isError ? 'error' : 'success');
+      }
+
+      document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = this.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        var email = document.getElementById('loginEmail').value.trim();
+        var password = document.getElementById('loginPassword').value;
+        window.RoadmapAuth.login(email, password)
+          .then(function () {
+            showMsg('login', 'Login successful. Redirecting…', false);
+            setTimeout(function () { window.location.href = '../index.html'; }, 500);
+          })
+          .catch(function (err) {
+            showMsg('login', err.message || 'Login failed', true);
+            btn.disabled = false;
+          });
+      });
+
+      document.getElementById('registerForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = this.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        var email = document.getElementById('regEmail').value.trim();
+        var displayName = document.getElementById('regDisplayName').value.trim() || null;
+        var password = document.getElementById('regPassword').value;
+        window.RoadmapAuth.register(email, password, displayName)
+          .then(function () {
+            showMsg('register', 'Account created. Redirecting…', false);
+            setTimeout(function () { window.location.href = '../index.html'; }, 500);
+          })
+          .catch(function (err) {
+            showMsg('register', err.message || 'Registration failed', true);
+            btn.disabled = false;
+          });
+      });
+    })();
+  </script>
+</body>
+</html>

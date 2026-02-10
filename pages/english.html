@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn English with flashcards — Flip cards to learn vocabulary.">
+  <title>Learn English — Roadmap</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <script>
+    (function(){var t=localStorage.getItem("roadmap-theme");if(t!=="dark"&&t!=="light")t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t);})();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/english.css">
+</head>
+<body class="page-english">
+  <div class="app">
+    <header class="header english-header">
+      <div class="header-top">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="breadcrumb-sep" aria-hidden="true">/</span>
+          <span>Learn English</span>
+        </nav>
+        <div class="theme-toggle-wrap">
+          <button type="button" id="themeToggle" class="theme-toggle" aria-label="Switch to dark mode">
+            <span class="theme-toggle-icon" aria-hidden="true">☽</span>
+            <span class="theme-toggle-label">Light</span>
+          </button>
+        </div>
+      </div>
+      <div class="header-inner">
+        <h1 class="logo">Learn English</h1>
+        <p class="tagline">Learn vocabulary with flashcards — Flip cards to see meanings.</p>
+      </div>
+    </header>
+
+    <main class="flashcard-main">
+      <div class="flashcard-controls">
+        <div class="card-counter-wrap">
+          <span id="cardCounter" class="card-counter">0 / 0</span>
+          <div class="progress-stats">
+            <span id="learnedCount" class="learned-count">0 learned</span>
+          </div>
+        </div>
+        <div class="flashcard-actions">
+          <button id="shuffleBtn" class="btn-icon" title="Shuffle">
+            <span>🔀</span>
+          </button>
+          <a href="english-admin.html" class="btn-icon" title="Manage vocabulary">
+            <span>⚙️</span>
+          </a>
+        </div>
+      </div>
+
+      <div id="flashcardContainer" class="flashcard-container">
+        <div id="cardFlip" class="flashcard">
+          <div id="cardFront" class="card-face card-front">
+            <div class="card-label">English</div>
+            <div id="cardContent" class="card-text">Loading...</div>
+            <div class="card-badge learned-badge">✓ Learned</div>
+          </div>
+          <div id="cardBack" class="card-face card-back">
+            <div class="card-label">Vietnamese</div>
+            <div id="cardTranslation" class="card-text">Loading...</div>
+            <div class="card-actions">
+              <button id="toggleLearnedBtn" class="btn-learned" title="Mark as learned (L)">
+                <span class="btn-icon">✓</span>
+                <span class="btn-text">Mark Learned</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard-nav">
+        <button id="prevBtn" class="btn-nav">← Previous</button>
+        <button id="flipBtn" class="btn-flip">Flip Card</button>
+        <button id="nextBtn" class="btn-nav">Next →</button>
+      </div>
+
+      <div class="flashcard-hint">
+        <p>💡 Press <kbd>Space</kbd> to flip, <kbd>←</kbd> <kbd>→</kbd> to navigate, <kbd>L</kbd> to mark learned</p>
+        <p class="hint-swipe">📱 Swipe left/right on mobile to navigate</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Personal learning roadmap · Learn English.</p>
+    </footer>
+
+    <div class="toast" id="englishToast" role="status" aria-live="polite"></div>
+  </div>
+  <script src="../js/theme.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="english-app.js"></script>
+</body>
+</html>

@@ -12,6 +12,14 @@
 
   function setStored(obj) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(obj));
+    if (window.RoadmapAuth && window.RoadmapProgress) {
+      window.RoadmapAuth.getCurrentUser().then(function (d) {
+        if (d && d.user) {
+          var ids = Object.keys(obj).filter(function (k) { return obj[k] === true; });
+          window.RoadmapProgress.saveRoadmap(STORAGE_KEY, ids).catch(function () {});
+        }
+      }).catch(function () {});
+    }
   }
 
   function getCompletedSet() {
@@ -123,5 +131,21 @@
     updateAptechProgress();
   }
 
-  renderCurriculum();
+  function init() {
+    if (window.RoadmapAuth && window.RoadmapProgress) {
+      window.RoadmapAuth.getCurrentUser().then(function (d) {
+        if (d && d.user) {
+          return window.RoadmapProgress.loadStoredForRoadmap(STORAGE_KEY).then(function (serverStored) {
+            // Luôn đồng bộ localStorage theo server cho user hiện tại
+            try {
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(serverStored));
+            } catch (_) {}
+          });
+        }
+      }).then(function () { renderCurriculum(); }).catch(function () { renderCurriculum(); });
+    } else {
+      renderCurriculum();
+    }
+  }
+  init();
 })();

@@ -1,43 +1,54 @@
-/* Variables & theme */
+/* Variables & theme — professional palette */
 :root,
 [data-theme="light"] {
-  --bg: #f8fafc;
+  --bg: #f1f5f9;
   --bg-panel: #ffffff;
   --bg-card: #ffffff;
   --border: #e2e8f0;
   --border-strong: #cbd5e1;
-  --text: #1e293b;
+  --text: #0f172a;
   --text-muted: #64748b;
   --accent: #2563eb;
   --accent-hover: #1d4ed8;
   --accent-light: #eff6ff;
-  --success: #16a34a;
-  --success-bg: #f0fdf4;
-  --success-border: #bbf7d0;
+  --success: #059669;
+  --success-bg: #ecfdf5;
+  --success-border: #a7f3d0;
   --task-bg: #ffffff;
-  --task-text: #1e293b;
+  --task-text: #0f172a;
   --task-border: #e2e8f0;
-  --gold: #ca8a04;
-  --gold-bg: #fefce8;
-  --radius: 12px;
-  --radius-sm: 8px;
-  --font-sans: "DM Sans", "Be Vietnam Pro", system-ui, sans-serif;
-  --font-display: "Fraunces", "Outfit", Georgia, serif;
+  --gold: #b45309;
+  --gold-bg: #fffbeb;
+  --radius: 14px;
+  --radius-sm: 10px;
+  --font-sans: "Be Vietnam Pro", "DM Sans", system-ui, sans-serif;
+  --font-display: "Outfit", "Be Vietnam Pro", system-ui, sans-serif;
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-  --shadow-panel: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-panel: 0 4px 14px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.08);
   --cfa-blue: #0369a1;
   --cfa-blue-bg: #e0f2fe;
   --cfa-dark: #0c4a6e;
-  --java-orange: #ed7d31;
-  --java-orange-bg: #fff4ed;
+  --java-orange: #ea580c;
+  --java-orange-bg: #fff7ed;
   --java-dark: #1a1a2e;
-  --aptech-violet: #6366f1;
-  --aptech-violet-bg: #eef2ff;
-  --aptech-dark: #312e81;
+  --aptech-violet: #5b21b6;
+  --aptech-violet-bg: #f5f3ff;
+  --aptech-dark: #4c1d95;
   --frontend-teal: #0d9488;
-  --frontend-teal-bg: #ccfbf1;
+  --frontend-teal-bg: #f0fdfa;
   --frontend-dark: #134e4a;
-  --home-gradient: linear-gradient(160deg, #f0f4ff 0%, #fefce8 40%, #f8fafc 100%);
+  --english-blue: #2563eb;
+  --english-blue-dark: #1d4ed8;
+  --english-blue-bg: #eff6ff;
+  --english-dark: #1e40af;
+  --card-front-bg: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  --card-front-text: #ffffff;
+  --card-front-label: rgba(255, 255, 255, 0.9);
+  --card-back-bg: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  --card-back-text: #0f172a;
+  --card-back-label: #64748b;
+  --home-gradient: linear-gradient(165deg, #f8fafc 0%, #f1f5f9 35%, #e2e8f0 100%);
 }
 
 [data-theme="dark"] {
@@ -51,29 +62,40 @@
   --accent: #60a5fa;
   --accent-hover: #93c5fd;
   --accent-light: #1e3a5f;
-  --success: #4ade80;
-  --success-bg: #14532d;
-  --success-border: #166534;
+  --success: #34d399;
+  --success-bg: #064e3b;
+  --success-border: #047857;
   --task-bg: #1e293b;
   --task-text: #f1f5f9;
   --task-border: #334155;
   --gold: #fbbf24;
   --gold-bg: #422006;
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  --shadow-panel: 0 4px 12px rgba(0, 0, 0, 0.25);
-  --cfa-blue: #0ea5e9;
+  --shadow-panel: 0 4px 14px rgba(0, 0, 0, 0.25);
+  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.35);
+  --cfa-blue: #38bdf8;
   --cfa-blue-bg: #0c4a6e;
   --cfa-dark: #7dd3fc;
   --java-orange: #fb923c;
   --java-orange-bg: #431407;
-  --java-dark: #e2e8f0;
-  --aptech-violet: #818cf8;
-  --aptech-violet-bg: #312e81;
-  --aptech-dark: #c7d2fe;
+  --java-dark: #fed7aa;
+  --aptech-violet: #a78bfa;
+  --aptech-violet-bg: #4c1d95;
+  --aptech-dark: #c4b5fd;
   --frontend-teal: #2dd4bf;
   --frontend-teal-bg: #134e4a;
   --frontend-dark: #99f6e4;
-  --home-gradient: linear-gradient(160deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  --english-blue: #60a5fa;
+  --english-blue-dark: #93c5fd;
+  --english-blue-bg: #1e3a5f;
+  --english-dark: #93c5fd;
+  --card-front-bg: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+  --card-front-text: #ffffff;
+  --card-front-label: rgba(255, 255, 255, 0.85);
+  --card-back-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  --card-back-text: #f1f5f9;
+  --card-back-label: #94a3b8;
+  --home-gradient: linear-gradient(165deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
 }
 
 [data-theme="dark"] .quote-section {

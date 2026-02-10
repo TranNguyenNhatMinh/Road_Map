@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manage English vocabulary — Add, edit, delete vocabulary for flashcards.">
+  <title>Vocabulary Management — Admin</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <script>
+    (function(){var t=localStorage.getItem("roadmap-theme");if(t!=="dark"&&t!=="light")t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t);})();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/english.css">
+</head>
+<body class="page-english">
+  <div class="app">
+    <header class="header english-header">
+      <div class="header-top">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="breadcrumb-sep" aria-hidden="true">/</span>
+          <a href="english.html">Learn English</a>
+          <span class="breadcrumb-sep" aria-hidden="true">/</span>
+          <span>Admin</span>
+        </nav>
+        <div class="theme-toggle-wrap">
+          <button type="button" id="themeToggle" class="theme-toggle" aria-label="Switch to dark mode">
+            <span class="theme-toggle-icon" aria-hidden="true">☽</span>
+            <span class="theme-toggle-label">Light</span>
+          </button>
+        </div>
+      </div>
+      <div class="header-inner">
+        <h1 class="logo">Vocabulary Management</h1>
+        <p class="tagline">Add, edit, delete English vocabulary for flashcards.</p>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <section class="admin-section">
+        <div class="section-header">
+          <h2 class="section-title">Add New Vocabulary</h2>
+          <div class="section-tabs">
+            <button class="tab-btn active" data-tab="single">Single</button>
+            <button class="tab-btn" data-tab="bulk">Bulk Import</button>
+          </div>
+        </div>
+        
+        <!-- Single Add Form -->
+        <div id="singleForm" class="tab-content active">
+          <form id="addVocabForm" class="add-vocab-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="englishInput">
+                  <span class="label-icon">🇬🇧</span>
+                  English Word
+                </label>
+                <input type="text" id="englishInput" class="form-input" placeholder="Example: Hello" required>
+              </div>
+              <div class="form-group">
+                <label for="vietnameseInput">
+                  <span class="label-icon">🇻🇳</span>
+                  Vietnamese Meaning
+                </label>
+                <input type="text" id="vietnameseInput" class="form-input" placeholder="Example: Xin chào" required>
+              </div>
+            </div>
+            <button type="submit" class="btn-primary">
+              <span class="btn-icon">➕</span>
+              Add Vocabulary
+            </button>
+          </form>
+        </div>
+
+        <!-- Bulk Import Form -->
+        <div id="bulkForm" class="tab-content">
+          <div class="bulk-import-info">
+            <p class="info-text">
+              <strong>Format:</strong> Paste multiple words, one per line. Use <code>-</code>, <code>:</code>, or <code>Tab</code> to separate English and Vietnamese.
+            </p>
+            <p class="info-example">
+              <strong>Example:</strong><br>
+              <code>Hello - Xin chào<br>
+              World - Thế giới<br>
+              Thank you - Cảm ơn</code>
+            </p>
+          </div>
+          <form id="bulkImportForm" class="bulk-import-form">
+            <div class="form-group">
+              <label for="bulkInput">
+                <span class="label-icon">📋</span>
+                Paste Vocabulary (one per line)
+              </label>
+              <textarea id="bulkInput" class="form-textarea" rows="8" placeholder="Hello - Xin chào&#10;World - Thế giới&#10;Thank you - Cảm ơn"></textarea>
+              <div class="input-hint">Supports: <code>word - meaning</code>, <code>word: meaning</code>, or <code>word	meaning</code> (tab)</div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn-primary btn-bulk">
+                <span class="btn-icon">📥</span>
+                Import All
+              </button>
+              <button type="button" id="clearBulkBtn" class="btn-secondary">
+                Clear
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="admin-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="title-icon">📚</span>
+            Vocabulary List
+            <span id="vocabCount" class="vocab-count">(0)</span>
+          </h2>
+          <div class="section-actions">
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="searchInput" class="search-input" placeholder="Search...">
+            </div>
+            <div class="filter-sort-group">
+              <select id="sortSelect" class="sort-select" title="Sort by">
+                <option value="default">Default</option>
+                <option value="english-asc">English A-Z</option>
+                <option value="english-desc">English Z-A</option>
+                <option value="vietnamese-asc">Vietnamese A-Z</option>
+                <option value="vietnamese-desc">Vietnamese Z-A</option>
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+              </select>
+            </div>
+            <div class="action-buttons">
+              <button id="importBtn" class="btn-icon-text" title="Import">
+                <span>📥</span>
+                <span class="btn-text-desktop">Import</span>
+              </button>
+              <button id="exportBtn" class="btn-icon-text" title="Export">
+                <span>📤</span>
+                <span class="btn-text-desktop">Export</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="vocabList" class="vocab-list">
+          <!-- Vocabulary items will be rendered here -->
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Personal learning roadmap · Vocabulary Management.</p>
+    </footer>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <h3 class="modal-title">Edit Vocabulary</h3>
+        <div class="form-group">
+          <label for="editEnglishInput">English Word</label>
+          <input type="text" id="editEnglishInput" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="editVietnameseInput">Vietnamese Meaning</label>
+          <input type="text" id="editVietnameseInput" class="form-input" required>
+        </div>
+        <input type="hidden" id="editIdInput">
+        <div class="modal-actions">
+          <button id="cancelEditBtn" class="btn-secondary">Cancel</button>
+          <button id="saveEditBtn" class="btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Import Modal -->
+    <div id="importModal" class="modal">
+      <div class="modal-content">
+        <h3 class="modal-title">Import Vocabulary</h3>
+        <p class="modal-description">Paste exported vocabulary or upload a file. Existing vocabulary will be merged (duplicates will be skipped).</p>
+        <div class="form-group">
+          <label for="importInput">
+            <span class="label-icon">📋</span>
+            Paste vocabulary or upload file
+          </label>
+          <textarea id="importInput" class="form-textarea" rows="6" placeholder="Hello - Xin chào&#10;World - Thế giới"></textarea>
+          <input type="file" id="fileInput" accept=".txt,.json" style="display: none;">
+          <div class="file-upload-area" id="fileUploadArea">
+            <span class="file-icon">📁</span>
+            <span class="file-text">Click to upload file or drag & drop</span>
+            <span class="file-hint">Supports .txt and .json files</span>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button id="cancelImportBtn" class="btn-secondary">Cancel</button>
+          <button id="confirmImportBtn" class="btn-primary">
+            <span class="btn-icon">📥</span>
+            Import
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="adminToast" role="status" aria-live="polite"></div>
+  </div>
+  <script src="../js/theme.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="english-admin.js"></script>
+</body>
+</html>
