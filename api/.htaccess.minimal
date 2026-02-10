@@ -1,0 +1,5 @@
+# File này là phiên bản MINIMAL nhất - chỉ để PHP chạy
+# Nếu file .htaccess chính không hoạt động, đổi tên file này thành .htaccess
+
+AddHandler application/x-httpd-php .php
+Options -Indexes
