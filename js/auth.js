@@ -19,6 +19,12 @@
       opts.body = JSON.stringify(body);
     }
     return fetch(url, opts).then(function (res) {
+      var contentType = res.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        return res.text().then(function (text) {
+          throw new Error('Server returned HTML instead of JSON. Check if PHP is running and API path is correct.');
+        });
+      }
       return res.json().then(function (data) {
         if (!res.ok) throw new Error(data.error || 'Request failed');
         return data;

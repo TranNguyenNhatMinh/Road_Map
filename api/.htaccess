@@ -1,0 +1,17 @@
+# Enable PHP processing
+AddHandler application/x-httpd-php .php
+
+# Set default charset
+AddDefaultCharset UTF-8
+
+# Enable error reporting (disable in production)
+# php_flag display_errors On
+# php_flag display_startup_errors On
+
+# Prevent directory listing
+Options -Indexes
+
+# Set JSON content type for API endpoints
+<FilesMatch "\.php$">
+    Header set Content-Type "application/json; charset=utf-8"
+</FilesMatch>

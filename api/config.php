@@ -3,6 +3,9 @@
  * Application config — edit these for your environment.
  */
 
+// Set JSON header first to ensure all responses are JSON
+header('Content-Type: application/json; charset=utf-8');
+
 // Database
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'database_project');
@@ -22,7 +25,6 @@ header('Access-Control-Allow-Origin: ' . (isset($_SERVER['HTTP_ORIGIN']) ? $_SER
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
-header('Content-Type: application/json; charset=utf-8');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(204);
