@@ -4,8 +4,19 @@
  * Body: { "email": "...", "password": "..." }
  */
 
-require_once __DIR__ . '/db.php';
-require_once __DIR__ . '/auth.php';
+// Set JSON header first to prevent HTML output
+header('Content-Type: application/json; charset=utf-8');
+
+// Error handling wrapper
+try {
+    require_once __DIR__ . '/config.php';
+    require_once __DIR__ . '/db.php';
+    require_once __DIR__ . '/auth.php';
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(['ok' => false, 'error' => 'Server configuration error: ' . $e->getMessage()]);
+    exit;
+}
 
 session_start_safe();
 
@@ -25,24 +36,30 @@ if ($email === '' || $password === '') {
     exit;
 }
 
-$stmt = $pdo->prepare('SELECT id, email, password_hash, display_name FROM users WHERE email = ?');
-$stmt->execute([$email]);
-$user = $stmt->fetch();
+try {
+    $stmt = $pdo->prepare('SELECT id, email, password_hash, display_name FROM users WHERE email = ?');
+    $stmt->execute([$email]);
+    $user = $stmt->fetch();
 
-if (!$user || !password_verify($password, $user['password_hash'])) {
-    http_response_code(401);
-    echo json_encode(['ok' => false, 'error' => 'Invalid email or password']);
+    if (!$user || !password_verify($password, $user['password_hash'])) {
+        http_response_code(401);
+        echo json_encode(['ok' => false, 'error' => 'Invalid email or password']);
+        exit;
+    }
+
+    $_SESSION['user_id'] = (int) $user['id'];
+    $_SESSION['user_email'] = $user['email'];
+
+    echo json_encode([
+        'ok' => true,
+        'user' => [
+            'id' => (int) $user['id'],
+            'email' => $user['email'],
+            'display_name' => $user['display_name']
+        ]
+    ]);
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(['ok' => false, 'error' => 'Login failed: ' . $e->getMessage()]);
     exit;
 }
-
-$_SESSION['user_id'] = (int) $user['id'];
-$_SESSION['user_email'] = $user['email'];
-
-echo json_encode([
-    'ok' => true,
-    'user' => [
-        'id' => (int) $user['id'],
-        'email' => $user['email'],
-        'display_name' => $user['display_name']
-    ]
-]);

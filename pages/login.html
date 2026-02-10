@@ -85,35 +85,102 @@
       document.getElementById('loginForm').addEventListener('submit', function (e) {
         e.preventDefault();
         var btn = this.querySelector('button[type="submit"]');
+        var emailInput = document.getElementById('loginEmail');
+        var passwordInput = document.getElementById('loginPassword');
+        
+        // Clear previous messages
+        showMsg('login', '', false);
+        
+        // Validation
+        var email = emailInput.value.trim();
+        var password = passwordInput.value;
+        
+        if (!email) {
+          showMsg('login', 'Please enter your email', true);
+          emailInput.focus();
+          return;
+        }
+        
+        if (!password) {
+          showMsg('login', 'Please enter your password', true);
+          passwordInput.focus();
+          return;
+        }
+        
         btn.disabled = true;
-        var email = document.getElementById('loginEmail').value.trim();
-        var password = document.getElementById('loginPassword').value;
+        btn.textContent = 'Logging in...';
+        
         window.RoadmapAuth.login(email, password)
           .then(function () {
             showMsg('login', 'Login successful. Redirecting…', false);
             setTimeout(function () { window.location.href = '../index.html'; }, 500);
           })
           .catch(function (err) {
-            showMsg('login', err.message || 'Login failed', true);
+            var errorMsg = err.message || 'Login failed';
+            showMsg('login', errorMsg, true);
             btn.disabled = false;
+            btn.textContent = 'Login';
+            // Focus lại input
+            if (errorMsg.indexOf('password') !== -1) {
+              passwordInput.focus();
+            } else {
+              emailInput.focus();
+            }
           });
       });
 
       document.getElementById('registerForm').addEventListener('submit', function (e) {
         e.preventDefault();
         var btn = this.querySelector('button[type="submit"]');
+        var emailInput = document.getElementById('regEmail');
+        var passwordInput = document.getElementById('regPassword');
+        var displayNameInput = document.getElementById('regDisplayName');
+        
+        // Clear previous messages
+        showMsg('register', '', false);
+        
+        // Validation
+        var email = emailInput.value.trim();
+        var password = passwordInput.value;
+        var displayName = displayNameInput.value.trim() || null;
+        
+        if (!email) {
+          showMsg('register', 'Please enter your email', true);
+          emailInput.focus();
+          return;
+        }
+        
+        if (!password) {
+          showMsg('register', 'Please enter a password', true);
+          passwordInput.focus();
+          return;
+        }
+        
+        if (password.length < 6) {
+          showMsg('register', 'Password must be at least 6 characters', true);
+          passwordInput.focus();
+          return;
+        }
+        
         btn.disabled = true;
-        var email = document.getElementById('regEmail').value.trim();
-        var displayName = document.getElementById('regDisplayName').value.trim() || null;
-        var password = document.getElementById('regPassword').value;
+        btn.textContent = 'Creating account...';
+        
         window.RoadmapAuth.register(email, password, displayName)
           .then(function () {
             showMsg('register', 'Account created. Redirecting…', false);
             setTimeout(function () { window.location.href = '../index.html'; }, 500);
           })
           .catch(function (err) {
-            showMsg('register', err.message || 'Registration failed', true);
+            var errorMsg = err.message || 'Registration failed';
+            showMsg('register', errorMsg, true);
             btn.disabled = false;
+            btn.textContent = 'Register';
+            // Focus lại input
+            if (errorMsg.indexOf('email') !== -1) {
+              emailInput.focus();
+            } else if (errorMsg.indexOf('password') !== -1) {
+              passwordInput.focus();
+            }
           });
       });
     })();

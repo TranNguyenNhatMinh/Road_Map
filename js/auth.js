@@ -19,16 +19,47 @@
       opts.body = JSON.stringify(body);
     }
     return fetch(url, opts).then(function (res) {
-      var contentType = res.headers.get('content-type');
-      if (!contentType || !contentType.includes('application/json')) {
+      var contentType = res.headers.get('content-type') || '';
+      // Kiểm tra nếu response không phải JSON
+      if (!contentType.includes('application/json')) {
         return res.text().then(function (text) {
-          throw new Error('Server returned HTML instead of JSON. Check if PHP is running and API path is correct.');
+          var errorMsg = 'Server error: ';
+          if (res.status === 404) {
+            errorMsg += 'API endpoint not found. Check if file exists: ' + url;
+          } else if (res.status === 500) {
+            errorMsg += 'Server internal error. Check PHP configuration.';
+          } else {
+            errorMsg += 'Server returned HTML instead of JSON. Response: ' + text.substring(0, 100);
+          }
+          throw new Error(errorMsg);
         });
       }
       return res.json().then(function (data) {
-        if (!res.ok) throw new Error(data.error || 'Request failed');
+        if (!res.ok) {
+          var errorMsg = data.error || 'Request failed';
+          if (res.status === 401) {
+            errorMsg = 'Invalid email or password';
+          } else if (res.status === 400) {
+            errorMsg = data.error || 'Invalid input';
+          } else if (res.status === 500) {
+            errorMsg = data.error || 'Server error';
+          }
+          throw new Error(errorMsg);
+        }
         return data;
+      }).catch(function (err) {
+        // Nếu parse JSON lỗi
+        if (err instanceof SyntaxError) {
+          throw new Error('Server returned invalid JSON. Check if PHP is running correctly.');
+        }
+        throw err;
       });
+    }).catch(function (err) {
+      // Network error hoặc CORS error
+      if (err.message.indexOf('fetch') !== -1 || err.message.indexOf('Failed') !== -1) {
+        throw new Error('Cannot connect to server. Check network connection and API URL: ' + API + path);
+      }
+      throw err;
     });
   }
 

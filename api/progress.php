@@ -6,8 +6,19 @@
  * Requires login.
  */
 
-require_once __DIR__ . '/db.php';
-require_once __DIR__ . '/auth.php';
+// Set JSON header first to prevent HTML output
+header('Content-Type: application/json; charset=utf-8');
+
+// Error handling wrapper
+try {
+    require_once __DIR__ . '/config.php';
+    require_once __DIR__ . '/db.php';
+    require_once __DIR__ . '/auth.php';
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(['ok' => false, 'error' => 'Server configuration error: ' . $e->getMessage()]);
+    exit;
+}
 
 session_start_safe();
 $userId = require_login();
