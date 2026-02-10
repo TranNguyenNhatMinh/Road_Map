@@ -12,12 +12,27 @@
   var API = getApiBase();
 
   function request(method, path, body) {
+    // Đảm bảo URL đúng format
     var url = API + path;
-    var opts = { method: method, credentials: 'include' };
+    if (!url.startsWith('http') && !url.startsWith('/')) {
+      url = '/' + url;
+    }
+    
+    var opts = { 
+      method: method, 
+      credentials: 'include',
+      mode: 'cors',
+      cache: 'no-cache'
+    };
+    
     if (body) {
-      opts.headers = { 'Content-Type': 'application/json' };
+      opts.headers = { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      };
       opts.body = JSON.stringify(body);
     }
+    
     return fetch(url, opts).then(function (res) {
       var contentType = res.headers.get('content-type') || '';
       // Kiểm tra nếu response không phải JSON

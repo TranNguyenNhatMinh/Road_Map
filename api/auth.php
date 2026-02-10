@@ -3,7 +3,10 @@
  * Auth helpers: start session, get current user.
  */
 
-require_once __DIR__ . '/config.php';
+// Đảm bảo không có output trước khi require config
+if (!defined('DB_HOST')) {
+    require_once __DIR__ . '/config.php';
+}
 
 function session_start_safe() {
     if (session_status() === PHP_SESSION_NONE) {
