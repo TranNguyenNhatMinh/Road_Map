@@ -3,8 +3,22 @@
  * Application config — edit these for your environment.
  */
 
-// Set JSON header first to ensure all responses are JSON
-header('Content-Type: application/json; charset=utf-8');
+// Tắt output buffering và error display
+if (ob_get_level()) {
+    ob_end_clean();
+}
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+
+// Set JSON header FIRST - trước mọi output khác
+if (!headers_sent()) {
+    header('Content-Type: application/json; charset=utf-8');
+    header('Access-Control-Allow-Origin: ' . (isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '*'));
+    header('Access-Control-Allow-Credentials: true');
+    header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+    header('Access-Control-Allow-Headers: Content-Type');
+}
 
 // Database
 define('DB_HOST', 'localhost');
@@ -19,12 +33,6 @@ define('SESSION_LIFETIME', 86400 * 7); // 7 days
 
 // Security
 define('PASSWORD_MIN_LENGTH', 6);
-
-// CORS (allow frontend to call API from same origin or different port)
-header('Access-Control-Allow-Origin: ' . (isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '*'));
-header('Access-Control-Allow-Credentials: true');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(204);
