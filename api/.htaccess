@@ -4,14 +4,25 @@ AddHandler application/x-httpd-php .php
 # Set default charset
 AddDefaultCharset UTF-8
 
-# Enable error reporting (disable in production)
-# php_flag display_errors On
-# php_flag display_startup_errors On
-
 # Prevent directory listing
 Options -Indexes
 
-# Set JSON content type for API endpoints
-<FilesMatch "\.php$">
-    Header set Content-Type "application/json; charset=utf-8"
-</FilesMatch>
+# Allow all HTTP methods (GET, POST, PUT, DELETE, OPTIONS)
+<Limit GET POST PUT DELETE OPTIONS>
+    Order allow,deny
+    Allow from all
+</Limit>
+
+# Allow POST method specifically
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_METHOD} ^(POST|GET|PUT|DELETE|OPTIONS)$ [NC]
+    RewriteRule .* - [L]
+</IfModule>
+
+# Set JSON content type for API endpoints (only if mod_headers is enabled)
+<IfModule mod_headers.c>
+    <FilesMatch "\.php$">
+        Header set Content-Type "application/json; charset=utf-8"
+    </FilesMatch>
+</IfModule>
