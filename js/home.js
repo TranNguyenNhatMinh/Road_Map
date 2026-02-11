@@ -32,42 +32,4 @@
   if (textEl) textEl.textContent = q.text;
   if (authorEl) authorEl.textContent = "— " + q.author;
 
-  // Nếu đã đăng nhập, hiển thị tên user đăng ký ở phần hero (greeting giữ nguyên "Welcome")
-  function updateHeroName() {
-    if (!window.RoadmapAuth) {
-      return;
-    }
-    window.RoadmapAuth.getCurrentUser().then(function (data) {
-      if (!data || !data.user) return;
-      var user = data.user;
-      var name =
-        user.display_name && user.display_name.trim()
-          ? user.display_name
-          : (user.email || "").split("@")[0];
-      var heroNameEl = document.querySelector(".hero-name-inner");
-      if (heroNameEl && name) {
-        heroNameEl.textContent = name;
-      }
-    }).catch(function () {
-      // ignore
-    });
-  }
-
-  // Đợi RoadmapAuth sẵn sàng rồi mới chạy
-  function waitForAuth() {
-    if (window.RoadmapAuth) {
-      updateHeroName();
-      // Chạy lại sau khi renderAuthInNav đã chạy
-      setTimeout(updateHeroName, 300);
-    } else {
-      setTimeout(waitForAuth, 50);
-    }
-  }
-
-  // Bắt đầu đợi khi DOM ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', waitForAuth);
-  } else {
-    waitForAuth();
-  }
 })();

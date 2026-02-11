@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Personal learning roadmap — CFA, Java, Aptech Semester III and Frontend Fullstack. Track progress and stay motivated.">
+  <meta name="description" content="Personal learning roadmap — CFA, Java, Aptech, Frontend, English, B2, C1/C2.">
   <title>Roadmap — Trần Nguyễn Nhật Minh</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <script>
@@ -11,125 +11,81 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body class="page-home">
-  <div class="app home-app">
-    <header class="home-header">
-      <nav class="nav-main">
-        <a href="index.html" class="logo">Roadmap</a>
-        <span id="authNav" class="auth-nav"></span>
-        <div class="theme-toggle-wrap">
-          <button type="button" id="themeToggle" class="theme-toggle" aria-label="Switch to dark mode">
-            <span class="theme-toggle-icon" aria-hidden="true">☽</span>
-            <span class="theme-toggle-label">Light</span>
-          </button>
-        </div>
-      </nav>
+  <div class="hp">
+    <header class="hp__head">
+      <a href="index.html" class="hp__logo">Roadmap</a>
+      <button type="button" id="themeToggle" class="hp__theme" aria-label="Đổi giao diện sáng/tối">
+        <span class="hp__theme-icon theme-toggle-icon" aria-hidden="true">☽</span>
+        <span class="hp__theme-label theme-toggle-label">Light</span>
+      </button>
     </header>
 
-    <main class="home-main">
-      <section class="hero-section">
-        <p class="hero-greeting">Welcome</p>
-        <h1 class="hero-name"><span class="hero-name-inner">Roadmap</span></h1>
-        <p class="hero-tagline">One step each day — each step brings you closer to your goals.</p>
-      </section>
+    <main class="hp__main">
+      <div class="hp__welcome">
+        <section class="hp__hero">
+          <span class="hp__hi">Hello</span>
+          <h1 class="hp__name">Trần Nguyễn Nhật Minh</h1>
+          <p class="hp__tagline">One step each day — each step brings you closer to your goals.</p>
+        </section>
 
-      <section class="quote-section" id="motivationCard">
-        <p class="quote-label-top">Quote of the day</p>
-        <blockquote class="quote-block">
-          <p class="quote-text" id="motivationText">An investment in knowledge pays the best interest.</p>
-          <cite class="quote-author" id="motivationAuthor">— Benjamin Franklin</cite>
-        </blockquote>
-      </section>
+        <aside class="hp__quote" id="motivationCard">
+          <span class="hp__quote-label">Quote of the day</span>
+          <p class="hp__quote-text" id="motivationText">An investment in knowledge pays the best interest.</p>
+          <cite class="hp__quote-by" id="motivationAuthor">— Benjamin Franklin</cite>
+        </aside>
+      </div>
 
-      <section class="roadmap-section" aria-labelledby="roadmap-heading">
-        <h2 id="roadmap-heading" class="section-heading">Choose your roadmap</h2>
-        <div class="options-grid">
-          <a href="cfa.html" class="option-card option-cfa">
-            <span class="option-icon option-icon-cfa" aria-hidden="true">
-              <img src="img/cfa.png" alt="" width="28" height="28">
-            </span>
-            <div class="option-content">
-              <h3 class="option-heading">CFA Study</h3>
-              <p class="option-desc">Track your CFA exam progress module by module on your own schedule.</p>
-              <span class="option-cta">Open roadmap <span class="option-arrow" aria-hidden="true">→</span></span>
-            </div>
-          </a>
-          <a href="java.html" class="option-card option-java">
-            <span class="option-icon option-icon-java" aria-hidden="true">
-              <img src="img/javapic.png" alt="" width="28" height="28">
-            </span>
-            <div class="option-content">
-              <h3 class="option-heading">Java Roadmap</h3>
-              <p class="option-desc">From Java fundamentals to Web, Spring, Jakarta EE and Web Services.</p>
-              <span class="option-cta">Open roadmap <span class="option-arrow" aria-hidden="true">→</span></span>
-            </div>
-          </a>
-          <a href="aptech.html" class="option-card option-aptech">
-            <span class="option-icon option-icon-aptech" aria-hidden="true">
-              <img src="assets/aptech-icon.svg" alt="" width="28" height="28">
-            </span>
-            <div class="option-content">
-              <h3 class="option-heading">Aptech Semester III</h3>
-              <p class="option-desc">MongoDB, Node.js, Python, ASP.NET MVC, Azure, SMAC and eProject — detailed curriculum.</p>
-              <span class="option-cta">Open roadmap <span class="option-arrow" aria-hidden="true">→</span></span>
-            </div>
-          </a>
-          <a href="frontend.html" class="option-card option-frontend">
-            <span class="option-icon option-icon-frontend" aria-hidden="true">
-              <img src="assets/frontend-icon.svg" alt="" width="28" height="28">
-            </span>
-            <div class="option-content">
-              <h3 class="option-heading">Frontend Fullstack</h3>
-              <p class="option-desc">HTML, CSS, JS, React, Next.js, TypeScript, Git, Testing &amp; Deploy — full curriculum.</p>
-              <span class="option-cta">Open roadmap <span class="option-arrow" aria-hidden="true">→</span></span>
-            </div>
-          </a>
-          <a href="pages/english.html" class="option-card option-english">
-            <span class="option-icon option-icon-english" aria-hidden="true">
-              <span style="font-size: 28px;">🇬🇧</span>
-            </span>
-            <div class="option-content">
-              <h3 class="option-heading">Learn English</h3>
-              <p class="option-desc">Learn vocabulary with flashcards — Flip cards to see meanings and memorize words effectively.</p>
-              <span class="option-cta">Start Learning <span class="option-arrow" aria-hidden="true">→</span></span>
-            </div>
-          </a>
-        </div>
+      <section class="hp__paths" aria-labelledby="hp-paths-title">
+        <h2 id="hp-paths-title" class="hp__paths-title">Learning paths</h2>
+        <ul class="hp__list">
+          <li><a href="cfa.html" class="hp__link hp__link--cfa">
+            <span class="hp__link-icon"><img src="img/cfa.png" alt="" width="24" height="24"></span>
+            <span class="hp__link-text"><strong>CFA Study</strong> — Track exam progress module by module.</span>
+            <span class="hp__link-arrow">→</span>
+          </a></li>
+          <li><a href="java.html" class="hp__link hp__link--java">
+            <span class="hp__link-icon"><img src="img/javapic.png" alt="" width="24" height="24"></span>
+            <span class="hp__link-text"><strong>Java Roadmap</strong> — Fundamentals to Web, Spring, Jakarta EE.</span>
+            <span class="hp__link-arrow">→</span>
+          </a></li>
+          <li><a href="aptech.html" class="hp__link hp__link--aptech">
+            <span class="hp__link-icon"><img src="assets/aptech-icon.svg" alt="" width="24" height="24"></span>
+            <span class="hp__link-text"><strong>Aptech Semester III</strong> — MongoDB, Node, Python, ASP.NET, Azure.</span>
+            <span class="hp__link-arrow">→</span>
+          </a></li>
+          <li><a href="frontend.html" class="hp__link hp__link--frontend">
+            <span class="hp__link-icon"><img src="assets/frontend-icon.svg" alt="" width="24" height="24"></span>
+            <span class="hp__link-text"><strong>Frontend Fullstack</strong> — HTML, CSS, JS, React, Next.js, TypeScript.</span>
+            <span class="hp__link-arrow">→</span>
+          </a></li>
+          <li><a href="pages/english.html" class="hp__link hp__link--english">
+            <span class="hp__link-icon" aria-hidden="true">🇬🇧</span>
+            <span class="hp__link-text"><strong>Learn English</strong> — Vocabulary flashcards.</span>
+            <span class="hp__link-arrow">→</span>
+          </a></li>
+          <li><a href="pages/destination-b2.html" class="hp__link hp__link--b2">
+            <span class="hp__link-icon" aria-hidden="true">📘</span>
+            <span class="hp__link-text"><strong>Destination B2</strong> — Ôn ngữ pháp B2, Units 1–28.</span>
+            <span class="hp__link-arrow">→</span>
+          </a></li>
+          <li><a href="pages/c1-c2.html" class="hp__link hp__link--c1c2">
+            <span class="hp__link-icon" aria-hidden="true">📗</span>
+            <span class="hp__link-text"><strong>Destination C1 & C2</strong> — Lộ trình C1/C2, Units 1–28.</span>
+            <span class="hp__link-arrow">→</span>
+          </a></li>
+        </ul>
       </section>
     </main>
 
-    <footer class="home-footer">
+    <footer class="hp__foot">
       <p>Personal learning roadmap · Every small step takes you to the goal.</p>
-      <span class="home-sync-hint" id="syncHint">Đăng nhập để đồng bộ tiến độ học trên mọi thiết bị (điện thoại, máy tính).</span>
     </footer>
   </div>
   <script src="js/theme.js"></script>
-  <script src="js/auth.js"></script>
   <script src="js/home.js"></script>
-  <script>
-    if (window.RoadmapAuth) {
-      RoadmapAuth.renderAuthInNav();
-      // Cập nhật tên sau khi auth đã render xong
-      setTimeout(function() {
-        if (window.RoadmapAuth) {
-          window.RoadmapAuth.getCurrentUser().then(function (data) {
-            if (data && data.user) {
-              var user = data.user;
-              var name = user.display_name && user.display_name.trim()
-                ? user.display_name
-                : (user.email || "").split("@")[0];
-              var heroNameEl = document.querySelector(".hero-name-inner");
-              if (heroNameEl && name) {
-                heroNameEl.textContent = name;
-              }
-            }
-          }).catch(function() {});
-        }
-      }, 200);
-    }
-  </script>
 </body>
 </html>

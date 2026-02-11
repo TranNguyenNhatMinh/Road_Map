@@ -486,6 +486,65 @@
   background: var(--frontend-teal-bg);
 }
 
+.page-destination-b2 .topic-title {
+  border-left-color: var(--english-blue);
+  color: var(--english-dark);
+}
+
+.page-destination-b2 .module-row:hover {
+  border-color: var(--english-blue);
+  background: var(--english-blue-bg);
+}
+
+.page-destination-b2 .module-row:not(.completed):hover .module-complete-btn {
+  border-color: var(--english-blue);
+  background: var(--english-blue-bg);
+}
+
+.page-c1-c2 .topic-title {
+  border-left-color: var(--aptech-violet);
+  color: var(--aptech-dark);
+}
+
+.page-c1-c2 .module-row:hover {
+  border-color: var(--aptech-violet);
+  background: var(--aptech-violet-bg);
+}
+
+.page-c1-c2 .module-row:not(.completed):hover .module-complete-btn {
+  border-color: var(--aptech-violet);
+  background: var(--aptech-violet-bg);
+}
+
+.topic-goal {
+  margin: -0.5rem 0 1rem;
+  padding: 0 0 0 0.75rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.destination-b2-week {
+  margin-bottom: 1.5rem;
+}
+
+.destination-b2-week .week-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 0.5rem;
+  padding-left: 0.25rem;
+}
+
+.destination-b2-week .week-tip {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg-panel);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--english-blue);
+}
+
 /* Đã xong = màu xanh nhạt, chữ gạch */
 .module-row.completed {
   border-color: var(--success-border);

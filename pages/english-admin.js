@@ -40,25 +40,9 @@
     }
   }
 
-  // Save vocabulary to localStorage and sync to server if logged in
+  // Save vocabulary to localStorage
   function saveVocabulary(vocab) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(vocab));
-    if (typeof window.RoadmapAuth !== 'undefined') {
-      window.RoadmapAuth.getCurrentUser().then(function (data) {
-        if (!data.user) return;
-        return fetch(window.RoadmapAuth.getApiBase() + '/vocabulary.php', {
-          method: 'POST',
-          credentials: 'include',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ items: vocab })
-        }).then(function (r) { return r.json(); });
-      }).then(function (data) {
-        if (data && data.ok && data.items && data.items.length >= 0) {
-          currentVocabulary = data.items;
-          filterVocabulary(searchInput ? searchInput.value : '');
-        }
-      }).catch(function () {});
-    }
   }
 
   // Generate unique ID
@@ -632,26 +616,12 @@
     }
   }
 
-  // Initialize: load from API if logged in, else localStorage
+  // Initialize: load from localStorage
   function initVocabulary() {
-    function finish(vocab) {
-      currentVocabulary = vocab || [];
-      filteredVocabulary = [];
-      renderVocabulary();
-      if (englishInput) englishInput.focus();
-    }
-    if (typeof window.RoadmapAuth !== 'undefined') {
-      window.RoadmapAuth.getCurrentUser().then(function (data) {
-        if (data.user) {
-          return fetch(window.RoadmapAuth.getApiBase() + '/vocabulary.php', { credentials: 'include' })
-            .then(function (r) { return r.json(); })
-            .then(function (res) { return res.ok && res.items ? res.items : loadVocabulary(); });
-        }
-        return loadVocabulary();
-      }).then(finish).catch(function () { finish(loadVocabulary()); });
-    } else {
-      finish(loadVocabulary());
-    }
+    currentVocabulary = loadVocabulary();
+    filteredVocabulary = [];
+    renderVocabulary();
+    if (englishInput) englishInput.focus();
   }
   initVocabulary();
 })();

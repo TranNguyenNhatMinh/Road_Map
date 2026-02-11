@@ -42,23 +42,11 @@
     }
   }
 
-  // Save learned vocabulary (localStorage + API if logged in)
+  // Save learned vocabulary (localStorage only)
   function saveLearned() {
     try {
       localStorage.setItem(LEARNED_KEY, JSON.stringify(Array.from(learnedSet)));
     } catch (_) {}
-    if (typeof window.RoadmapAuth !== 'undefined') {
-      window.RoadmapAuth.getCurrentUser().then(function (data) {
-        if (!data.user) return;
-        var ids = vocabulary.map(function (v) { return v.id; }).filter(function (id) { return learnedSet.has(id); });
-        return fetch(window.RoadmapAuth.getApiBase() + '/learned.php', {
-          method: 'POST',
-          credentials: 'include',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ learned_ids: ids })
-        });
-      }).catch(function () {});
-    }
   }
 
   // Check if current card is learned
@@ -119,27 +107,7 @@
       updateLearnedStats();
       setupTouchEvents();
     }
-    if (typeof window.RoadmapAuth !== 'undefined') {
-      window.RoadmapAuth.getCurrentUser().then(function (data) {
-        if (!data.user) {
-          start(loadVocabulary(), loadLearned());
-          return;
-        }
-        var api = window.RoadmapAuth.getApiBase();
-        return Promise.all([
-          fetch(api + '/vocabulary.php', { credentials: 'include' }).then(function (r) { return r.json(); }),
-          fetch(api + '/learned.php', { credentials: 'include' }).then(function (r) { return r.json(); })
-        ]).then(function (results) {
-          var vocab = (results[0].ok && results[0].items) ? results[0].items : loadVocabulary();
-          var learned = (results[1].ok && results[1].learned_ids) ? new Set(results[1].learned_ids) : loadLearned();
-          start(vocab, learned);
-        });
-      }).catch(function () {
-        start(loadVocabulary(), loadLearned());
-      });
-    } else {
-      start(loadVocabulary(), loadLearned());
-    }
+    start(loadVocabulary(), loadLearned());
   }
 
   // Shuffle vocabulary
